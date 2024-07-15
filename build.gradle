@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    alias libs.plugins.lombok
+    alias libs.plugins.papermake
+    alias libs.plugins.shadow
+}
+
+group = 'com.martianlabs'
+version = '0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven {
+        name = "codemc"
+        url = "https://repo.codemc.io/repository/nms/"
+    }
+    maven {
+        name = "martian-labs"
+        url = "https://maven.pkg.github.com/MartianLabs-dev/better-configuration"
+    }
+}
+
+dependencies {
+    compileOnly libs.paper
+    implementation libs.bytebuddy
+    implementation libs.betterconfiguration
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(libs.versions.java.get())
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+    }
+}
+
+tasks {
+    build { dependsOn(shadowJar) }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.martianlabs'
+            artifactId = 'entity'
+            version = '0.1-SNAPSHOT'
+
+            from components.java
+        }
+    }
+}

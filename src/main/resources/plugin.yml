@@ -1,0 +1,5 @@
+name: BetterEntities
+version: '${version}'
+main: com.martianlabs.entity.BetterEntities
+commands:
+  test:

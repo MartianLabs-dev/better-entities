@@ -1,0 +1,18 @@
+[versions]
+java = "8"
+paper = "1.12.2-R0.1-SNAPSHOT"
+lombok = "8.6"
+papermake = "1.0.6"
+bytebuddy = "1.12.13"
+shadow = "8.1.1"
+betterconfiguration = "1.0-SNAPSHOT"
+
+[libraries]
+paper = { group = "com.destroystokyo.paper", name = "paper", version.ref = "paper" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version.ref = "bytebuddy" }
+betterconfiguration = { group = "com.martianlabs", name = "config", version.ref = "betterconfiguration" }
+
+[plugins]
+lombok = { id = "io.freefair.lombok", version.ref = "lombok"}
+papermake = { id = "com.rikonardo.papermake", version.ref = "papermake" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
